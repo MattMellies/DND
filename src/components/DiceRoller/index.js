@@ -98,12 +98,27 @@ const DiceRoller = () => {
       <br />
       Result:{" "}
       {resultArray.map((result) => {
-        return (
-          <span>
-            <FontAwesomeIcon icon={faDiceD20} />
-            {result} &nbsp;
-          </span>
-        );
+        if (result === 20) {
+          return (
+            <span className={styles.crit}>
+              <FontAwesomeIcon icon={faDiceD20} />
+              {result} &nbsp;
+            </span>
+          );
+        } else if (result === 1) {
+          return (
+            <span className={styles.natOne}>
+              <FontAwesomeIcon icon={faDiceD20} />
+              {result} &nbsp;
+            </span>
+          );
+        } else {
+          return (
+            <span>
+              <FontAwesomeIcon icon={faDiceD20} /> {result} &nbsp;
+            </span>
+          );
+        }
       })}
       <br />
       <strong>Total: {resultTotal}</strong>.
