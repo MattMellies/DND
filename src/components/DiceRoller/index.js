@@ -70,6 +70,7 @@ const DiceRoller = () => {
           <Grid item xs={12}>
             <Button
               variant="contained"
+			  fullWidth
               disabled={disableButton}
               onClick={() => handleDiceRoll(diceAmount, diceSides)}
             >
