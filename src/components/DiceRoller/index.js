@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { Box, Button, TextField, Grid } from "@mui/material";
 import { rollDice } from "../../utils/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faDiceD20} from '@fortawesome/free-solid-svg-icons';
+import { faDiceD20 } from "@fortawesome/free-solid-svg-icons";
+import styles from "./DiceRoller.module.scss";
 
 const DiceRoller = () => {
   const [diceAmount, setDiceAmount] = useState(1);
@@ -52,6 +53,7 @@ const DiceRoller = () => {
         <Grid container spacing={2}>
           <Grid item xs={6}>
             <TextField
+              className={styles.diceField}
               fullWidth
               required
               error={diceAmount > 5000 || diceAmount < 1}
@@ -66,6 +68,7 @@ const DiceRoller = () => {
           </Grid>
           <Grid item xs={6}>
             <TextField
+              className={styles.diceField}
               fullWidth
               required
               error={diceSides > 1000 || diceSides < 1}
@@ -85,7 +88,9 @@ const DiceRoller = () => {
               disabled={disableButton}
               onClick={() => handleDiceRoll(diceAmount, diceSides)}
             >
-              <FontAwesomeIcon icon={faDiceD20} />&nbsp;Roll Em!&nbsp;<FontAwesomeIcon icon={faDiceD20} />
+              <FontAwesomeIcon icon={faDiceD20} />
+              &nbsp;Roll Em!&nbsp;
+              <FontAwesomeIcon icon={faDiceD20} />
             </Button>
           </Grid>
         </Grid>
@@ -93,11 +98,12 @@ const DiceRoller = () => {
       <br />
       Result:{" "}
       {resultArray.map((result) => {
-        return(
-			<span>
-				<FontAwesomeIcon icon={faDiceD20} />{result} &nbsp; 
-			</span>
-		)
+        return (
+          <span>
+            <FontAwesomeIcon icon={faDiceD20} />
+            {result} &nbsp;
+          </span>
+        );
       })}
       <br />
       <strong>Total: {resultTotal}</strong>.
