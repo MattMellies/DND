@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Box, Button, TextField, Grid } from "@mui/material";
 import { rollDice } from "../../utils/utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faDiceD20} from '@fortawesome/free-solid-svg-icons';
 
 const DiceRoller = () => {
   const [diceAmount, setDiceAmount] = useState(1);
@@ -26,7 +28,12 @@ const DiceRoller = () => {
   }, [resultArray]);
 
   useEffect(() => {
-    if (diceSides > 1000 || diceAmount > 5000 || diceSides < 1 || diceAmount < 1) {
+    if (
+      diceSides > 1000 ||
+      diceAmount > 5000 ||
+      diceSides < 1 ||
+      diceAmount < 1
+    ) {
       setDisableButton(true);
     } else {
       setDisableButton(false);
@@ -39,7 +46,7 @@ const DiceRoller = () => {
       <Box
         component="form"
         autoComplete="off"
-        sx={{maxWidth: '100%'}}
+        sx={{ maxWidth: "100%" }}
         noValidate
       >
         <Grid container spacing={2}>
@@ -48,7 +55,9 @@ const DiceRoller = () => {
               fullWidth
               required
               error={diceAmount > 5000 || diceAmount < 1}
-              helperText={diceAmount > 5000 || diceAmount < 1 ? "Min 1, Max 5000" : ""}
+              helperText={
+                diceAmount > 5000 || diceAmount < 1 ? "Min 1, Max 5000" : ""
+              }
               id="outlined-required"
               label="Dice Amount"
               defaultValue={1}
@@ -60,7 +69,9 @@ const DiceRoller = () => {
               fullWidth
               required
               error={diceSides > 1000 || diceSides < 1}
-              helperText={diceSides > 1000 || diceSides < 1 ? "Min 1, Max 1000" : ""}
+              helperText={
+                diceSides > 1000 || diceSides < 1 ? "Min 1, Max 1000" : ""
+              }
               id="outlined-required"
               label="Dice Sides"
               defaultValue={20}
@@ -70,11 +81,11 @@ const DiceRoller = () => {
           <Grid item xs={12}>
             <Button
               variant="contained"
-			  fullWidth
+              fullWidth
               disabled={disableButton}
               onClick={() => handleDiceRoll(diceAmount, diceSides)}
             >
-              Roll Em!
+              <FontAwesomeIcon icon={faDiceD20} />&nbsp;Roll Em!&nbsp;<FontAwesomeIcon icon={faDiceD20} />
             </Button>
           </Grid>
         </Grid>
@@ -82,7 +93,11 @@ const DiceRoller = () => {
       <br />
       Result:{" "}
       {resultArray.map((result) => {
-        return `${result} `;
+        return(
+			<span>
+				<FontAwesomeIcon icon={faDiceD20} />{result} &nbsp; 
+			</span>
+		)
       })}
       <br />
       <strong>Total: {resultTotal}</strong>.
