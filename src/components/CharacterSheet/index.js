@@ -95,7 +95,7 @@ const CharacterSheet = () => {
           <Grid item xs={6} md={2}>
             <TextField fullWidth label={`Hit Dice (d${hitDiceType})`} value={`${hitDiceCurrent} / ${hitDiceTotal}`} />
           </Grid>
-          <Grid item xs={12} md={2}>
+          <Grid item xs={6} md={2}>
             <TextField fullWidth label={'Passive Perception'} value={passivePerception} />
           </Grid>
         </Grid>
