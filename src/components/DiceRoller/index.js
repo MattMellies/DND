@@ -43,7 +43,6 @@ const DiceRoller = () => {
 
   return (
     <div>
-      <h2>Dice Roller</h2>
       <Box
         component="form"
         autoComplete="off"
@@ -100,21 +99,21 @@ const DiceRoller = () => {
       {resultArray.map((result) => {
         if (result === 20) {
           return (
-            <span className={styles.crit}>
+            <span key={Math.random()} className={styles.crit}>
               <FontAwesomeIcon icon={faDiceD20} />
               {result} &nbsp;
             </span>
           );
         } else if (result === 1) {
           return (
-            <span className={styles.natOne}>
+            <span key={Math.random()}className={styles.natOne}>
               <FontAwesomeIcon icon={faDiceD20} />
               {result} &nbsp;
             </span>
           );
         } else {
           return (
-            <span>
+            <span key={Math.random()}>
               <FontAwesomeIcon icon={faDiceD20} /> {result} &nbsp;
             </span>
           );
