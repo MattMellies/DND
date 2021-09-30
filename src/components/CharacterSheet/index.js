@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import _ from "lodash";
 import { Box, TextField, Grid, FormControlLabel, Checkbox } from "@mui/material";
 
 const CharacterSheet = () => {
   //Character
-  const [character, setCharacter] = useState([
+  const [character, setCharacter] = useState(
     {
-      name: "",
+      name: localStorage.characterName !== undefined ? localStorage.characterName : '',
       class: "",
       level: 0,
       race: "",
@@ -14,7 +14,7 @@ const CharacterSheet = () => {
       alignment: "",
       xp: 0,
     },
-  ]);
+  );
 
   //Stats
   const [stats, setState] = useState([
@@ -79,9 +79,32 @@ const CharacterSheet = () => {
     }
   }
 
+  const handleNameChange = (event) => {
+     setCharacter(prevState => ({
+      ...prevState,
+      name: event.target.value
+     }))
+
+     localStorage.characterName = event.target.value
+  }
+
   return (
     <div className="characterSheet">
-      <Box component="div" sx={{ marginBottom: "2em" }}>
+
+
+      <Box component="div" sx={{ border: '1px solid #333', padding: '1em' }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField variant={"standard"} label="Name" value={character.name} onChange={handleNameChange} />
+          </Grid>
+        </Grid>
+      </Box>
+
+
+
+
+      {/* OLD */}
+      {/* <Box component="div" sx={{ marginBottom: "2em" }}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={2}>
             <FormControlLabel control={<Checkbox checked={inspiration} onClick={handleIspiration} />} label="Inspiration" />  
@@ -195,7 +218,7 @@ const CharacterSheet = () => {
             </Grid>
           );
         })}
-      </Grid>
+      </Grid> */}
     </div>
   );
 };
