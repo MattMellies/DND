@@ -7,7 +7,7 @@ const CharacterSheet = () => {
   const [character, setCharacter] = useState(
     {
       name: localStorage.characterName !== undefined ? localStorage.characterName : '',
-      class: "",
+      className: localStorage.className !== undefined ? localStorage.className : '',
       level: 0,
       race: "",
       background: "",
@@ -80,12 +80,21 @@ const CharacterSheet = () => {
   }
 
   const handleNameChange = (event) => {
-     setCharacter(prevState => ({
+    setCharacter(prevState => ({
       ...prevState,
       name: event.target.value
-     }))
+    }))
 
-     localStorage.characterName = event.target.value
+    localStorage.characterName = event.target.value
+  }
+
+  const handleClassNameChange = (event) => {
+    setCharacter(prevState => ({
+      ...prevState,
+      className: event.target.value
+    }))
+
+    localStorage.className = event.target.value
   }
 
   return (
@@ -96,129 +105,10 @@ const CharacterSheet = () => {
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField variant={"standard"} label="Name" value={character.name} onChange={handleNameChange} />
+            <TextField variant={"standard"} label="Class" value={character.className} onChange={handleClassNameChange} />
           </Grid>
         </Grid>
       </Box>
-
-
-
-
-      {/* OLD */}
-      {/* <Box component="div" sx={{ marginBottom: "2em" }}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={2}>
-            <FormControlLabel control={<Checkbox checked={inspiration} onClick={handleIspiration} />} label="Inspiration" />  
-          </Grid>
-          <Grid item xs={6} md={2}>
-            <TextField fullWidth label={`HP (Max: ${hitPointMax})`} value={currentHP} />
-          </Grid>
-          <Grid item xs={6} md={2}>
-            <TextField fullWidth label={`Temp HP`} value={tempHP} />
-          </Grid>
-          <Grid item xs={6} md={2}>
-            <TextField fullWidth label={`Hit Dice (d${hitDiceType})`} value={`${hitDiceCurrent} / ${hitDiceTotal}`} />
-          </Grid>
-          <Grid item xs={6} md={2}>
-            <TextField fullWidth label={'Passive Perception'} value={passivePerception} />
-          </Grid>
-        </Grid>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <h2>Character</h2>
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <TextField fullWidth label={"Name"} value={character.name} />
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <TextField fullWidth label={"Class"} value={character.class} />
-          </Grid>
-          <Grid item xs={6} md={6} lg={4}>
-            <TextField fullWidth label={"Level"} value={character.level} />
-          </Grid>
-          <Grid item xs={6} md={6} lg={3}>
-            <TextField fullWidth label={"Race"} value={character.race} />
-          </Grid>
-          <Grid item xs={4} md={4} lg={3}>
-            <TextField
-              fullWidth
-              label={"Background"}
-              value={character.background}
-            />
-          </Grid>
-          <Grid item xs={4} md={4} lg={3}>
-            <TextField
-              fullWidth
-              label={"Alignment"}
-              value={character.alignment}
-            />
-          </Grid>
-          <Grid item xs={4} md={4} lg={3}>
-            <TextField
-              fullWidth
-              label={"Experience"}
-              value={character.experience}
-            />
-          </Grid>
-        </Grid>
-      </Box>
-
-      <Grid container spacing={2}>
-        <Grid item xs={4}>
-          <TextField fullWidth label={"Proficiency"} value={proficiencyBonus} />
-        </Grid>
-        <Grid item xs={4}>
-          <TextField fullWidth label={"Intiative"} value={initiative} />
-        </Grid>
-        <Grid item xs={4}>
-          <TextField fullWidth label={"Speed"} value={speed} />
-        </Grid>
-      </Grid>
-
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <h2>Stats</h2>
-        </Grid>
-        <Grid item xs={12}>
-          <Box
-            component="form"
-            autoComplete="off"
-            sx={{ maxWidth: "100%" }}
-            noValidate
-          >
-            <Grid container spacing={2}>
-              {stats.map((i) => {
-                return (
-                  <Grid item xs={6} md={4} lg={2}>
-                    <TextField
-                      fullWidth
-                      defaultValue={i.val}
-                      label={_.upperCase(i.name)}
-                    />
-                  </Grid>
-                );
-              })}
-            </Grid>
-          </Box>
-        </Grid>
-      </Grid>
-
-      <Grid container spacing={2}>
-        <Grid item xs="12">
-          <h2>Skills</h2>
-        </Grid>
-        {skills.map((i) => {
-          return (
-            <Grid item xs={6} md={4} lg={2}>
-              <TextField
-                fullWidth
-                defaultValue={i.val}
-                label={_.startCase(i.name)}
-                className={i.exp ? "hasExpertise" : ""}
-              />
-            </Grid>
-          );
-        })}
-      </Grid> */}
     </div>
   );
 };
