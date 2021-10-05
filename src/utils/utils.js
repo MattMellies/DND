@@ -27,5 +27,6 @@ export const fumbleTable = [
     "The enemy nearest to the fumbler may use its reaction to make one weapon attack against the fumbler.",
     "The fumbler drops their weapon and is stunned until the end of their next turn.",
     "The fumbler has disadvantage on all attack rolls, ability checks, skill checks, or saving throws they make before the end of their next turn.",
-    "The fumbler rolls damage and applies it to themselves."
+    "The fumbler rolls damage and applies it to themselves.",
+    "Roll all the attack’s damage dice twice and add them together, then add any relevant modifiers as normal. The fumbler applies this damage to themselves. They then fall Unconscious until another creature rouses them, an attack hits them, or three rounds have passed, whichever happens first."
 ]
